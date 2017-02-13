@@ -15,6 +15,7 @@ got(GISTS_ENDPOINT, { query }).then(response => {
   const simplerData = data.map(
     item => ({
       id: item.id,
+      description: item.description || 'No description',
       files: fileNames(item.files)
     })
   );
@@ -23,6 +24,8 @@ got(GISTS_ENDPOINT, { query }).then(response => {
     item => console.log(
       `ID: ${item.id}`+
       `\n` +
+      `Description: ${item.description}`+
+      `\n`+
       `Files: ${item.files}`+
       `\n`+
       `_______________________________________________________`
