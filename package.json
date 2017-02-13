@@ -1,0 +1,24 @@
+{
+  "name": "i-am-bored.sh",
+  "version": "0.0.1",
+  "description": "Gist parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/othman853/i-am-bored.sh.git"
+  },
+  "keywords": [
+    "Gist",
+    "parsing",
+    "boredom"
+  ],
+  "author": "@othman853 <anuar.yasser@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/othman853/i-am-bored.sh/issues"
+  },
+  "homepage": "https://github.com/othman853/i-am-bored.sh#readme"
+}
