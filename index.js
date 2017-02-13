@@ -2,34 +2,21 @@ require('value-box/path')(__dirname, ['/values']);
 const { urls, github, secrets } = require('value-box');
 const got = require('got');
 
-const GISTS_ENDPOINT = urls.gist(github.username);
+const GISTS_ENDPOINT = urls.gist(github.boredomGistId);
 const query = { access_token: secrets.GITHUB_TOKEN };
 
-fileNames = files => {
-  return Object.keys(files);
-};
+const simplifyFiles = files =>
+  Object.keys(files).map(name => ({
+    name: files[name].filename,
+    raw: files[name].raw_url
+  }));
 
-got(GISTS_ENDPOINT, { query }).then(response => {
-  const data = JSON.parse(response.body);
-
-  const simplerData = data.map(
-    item => ({
-      id: item.id,
-      description: item.description || 'No description',
-      files: fileNames(item.files)
-    })
-  );
-
-  simplerData.forEach(
-    item => console.log(
-      `ID: ${item.id}`+
-      `\n` +
-      `Description: ${item.description}`+
-      `\n`+
-      `Files: ${item.files}`+
-      `\n`+
-      `_______________________________________________________`
-    )
-  );
-
+const simplify = gist => ({
+  description: gist.description,
+  files: simplifyFiles(gist.files)
 });
+
+
+got(GISTS_ENDPOINT, { query }).then(response =>
+  console.log(simplify(JSON.parse(response.body)));
+);

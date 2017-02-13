@@ -2,7 +2,8 @@ const PROTOCOL = 'https'
 const HOST = 'api.github.com';
 
 const endpoints = {
-  gist: user => `/users/${user}/gists`
+  gists: user => `/users/${user}/gists`,
+  gist: id => `/gists/${id}`
 };
 
 const url = endpoint => `${PROTOCOL}://${HOST}${endpoint}`
@@ -11,5 +12,6 @@ module.exports = {
   PROTOCOL,
   HOST,
   endpoints,
-  gist: user => url(endpoints.gist(user))
+  gists: user => url(endpoints.gists(user)),
+  gist: id => url(endpoints.gist(id))
 };
