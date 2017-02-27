@@ -1,3 +1,6 @@
-const exec = require('child_process').exec;
+const got = require('got');
 
-exec('curl http://wttr.in', (err, stdout, stderr) => console.log(stdout));
+const headers = { 'User-Agent': 'curl/7.43.0' };
+
+got('wttr.in', { headers })
+  .then(response => console.log(response.body));
