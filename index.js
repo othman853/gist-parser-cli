@@ -17,6 +17,7 @@ const simplify = gist => ({
 });
 
 
-got(GISTS_ENDPOINT, { query }).then(response =>
-  console.log(simplify(JSON.parse(response.body)));
-);
+got(GISTS_ENDPOINT, { query })
+  .then(response =>
+    console.log(simplify(JSON.parse(response.body)))
+  );
